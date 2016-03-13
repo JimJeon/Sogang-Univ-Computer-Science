@@ -1,0 +1,27 @@
+26
+20121053 / Natalie Lewis   / Male / FINANCE / 01 / 3000
+20131918 / Chloe Christian   / Male / SALES / 02 / 3540
+20131317 / Emolys Evans   / Male / SALES / 02 / 2630
+20121329 / Sophia Allen   / Male / RESEARCH / 03 / 5680
+20131787 / Robert Melton   / Female / PLANNING / 04 / 3270
+20131161 / Siaomos Barton   / Male / FINANACE / 01 / 3370
+20111559 / Sebastian Henderson   / Female / FINANCE / 01 / 3090
+20131185 / Richard Cerney   / Male / SALES / 02 / 3700
+20131754 / Elizabeth Calvin   / Female / RESEARCH / 03 / 2640
+20101696 / Madison Frost   / Male / SALES / 02 / 3330
+20091758 / Emily Stevgenson   / Female / PLANNING / 04 / 3400
+20131776 / Navy Taylor   / Male / PLANNING / 04 / 5230
+20131403 / Vincent Newton   / Male / RESEARCH / 03 / 2400
+20091762 / Owen Ingram   / Male / FINANCE / 01 / 3110
+20131442 / Olyen Massey   / Male / SALES / 02 / 3730
+20141039 / Emma Thomas   / Male / SALES / 02 / 2730
+20131341 / Peter Pitts   / Female / PLANNING / 04 / 2490
+20131368 / Xygret Latimer   / Male / RESEARCH / 03 / 3910
+20131372 / Michael Grahan   / Male / SALES / 02 / 2750
+20101445 / Mandon Austin   / Male / PLANNING / 04 / 4890
+20131176 / Violet Smith   / Male / FINANCE / 01 / 3900
+20101841 / Samuel Davis   / Male / FINANCE / 01 / 3180
+20131162 / Sam Mackey   / Male / FINANCE / 01 / 5750
+20131555 / Miguel Parr   / Male / FINANCE / 01 / 7950
+20131836 / Oscar Hamersley   / Male / FINANCE / 01 / 6170
+20141582 / MeanSon King   / Female / PLANNING / 04 / 8000
