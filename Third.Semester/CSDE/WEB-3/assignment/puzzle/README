@@ -1,0 +1,21 @@
+Picture Puzzle Program with JS version 1.0 03/24/2016
+
+GENERAL USAGE NOTES
+---------------------
+
+- This assignment is written on cspro server (cspro.sogang.ac.kr)
+  of Sogang Univ. Computer Science and Engineering. So, it can occur some
+  unknown errors on the other environments.
+
+- This server uses ~/public_html for Root Directory. And the main source is in ~/public_html/puzzle.html
+
+- Resources files are in res folder. The location of res folder is ~/public_html/res
+
+- Use these addresses to execute "http://cspro.sogang.ac.kr/~USERNAME/puzzle.html" or
+  "http://cspro.sogang.ac.kr/~cse20151603/puzzle.html" is recommended.
+
+=================================================================================================
+
+Author: Jim Jeon (Jeon Jin-woo)
+ID_NUM: 20151603
+E-Mail: irregular.sogang@icloud.com

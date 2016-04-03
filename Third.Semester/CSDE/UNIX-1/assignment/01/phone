@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+    echo "Usage: phone searchfor [... searchfor]"
+    echo "(You didn't tell me what you want to search for.)"
+    exit 1
+fi
+
+for i in $*
+do
+    if [ $i == $1 ]
+    then
+        arg=$i
+    else
+        arg=$arg"|"$i
+    fi
+done
+
+data=`cat mydata`
+IFS="|"
+for i in $arg
+do
+    IFS=" "
+    data=`echo $data | egrep -i "($i)"`
+done
+
+echo $data | awk '
+BEGIN {FS="|"}
+{print "-------------->"}
+{print "Name: "$1;}
+{print "Address: "$2;}
+{print "Phone: "$3;}
+{print "<--------------"}
+'

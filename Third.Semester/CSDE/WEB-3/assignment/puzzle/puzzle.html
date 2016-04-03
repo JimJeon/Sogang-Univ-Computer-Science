@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>15 Puzzle Game</title>
+        <script>
+
+            // this variable is for checking whether this puzzle is solved.
+            var completed=true; 
+            
+            // ***This function is never used in this program.***
+            // Argument: sep for separator, str for string to cut
+            // This function returns a tokens array that stores
+            // values of separated given string.
+            function tokenize(sep,str)
+            {
+                tokens = new Array(); 
+                i=0;
+                while(1)
+                {
+                    idx=str.indexOf(sep);
+                    if(idx == -1)
+                    {
+                        if(str.length>0)
+                        {
+                            tokens[i]=str;
+                        } 
+                        break;
+                    }
+                    tokens[i++]=str.substring(0,idx);
+                    str=str.substr(idx+1);
+                }
+                return tokens;
+            }
+
+            // get x location of given index of picture
+            function getX(idx)
+            {
+                var rest=idx-Math.floor(idx/4)*4; 
+                return (rest==0)?4:rest;
+            }
+
+            // get y location of given index of picture
+            function getY(idx)
+            {
+                return Math.floor((idx-1)/4)+1;
+            }
+
+            // get index of picture of given x, y location
+            function getIndex(x,y)
+            {
+                return x+(y-1)*4;
+            }
+
+            // Argument: position of picture either x or y
+            // randomly return a location of x or y which is movable
+            function newDirection(pos)
+            {
+                var dir;
+
+                if ((pos==2)||(pos==3)) dir=(Math.floor(Math.random()+0.5)==0)?-1:1;
+                else dir=(pos==1)?1:-1;
+                return (pos+dir);
+            }
+
+            // this function uses getX, getY, newDirection, getIndex
+            // randomly return index of a movable position
+            function newIndex(idx)
+            {
+                var x,y;
+
+                x=getX(idx);
+                y=getY(idx);
+                if (Math.floor(Math.random()+0.5)==0) x=newDirection(x);
+                else y=newDirection(y);
+                return getIndex(x,y);
+            }
+
+            // check whether this puzzle is solved
+            function isComplete()
+            {
+                for(var i = 1; i < 17; ++i)
+                {
+                    img = document.getElementById(i).name;
+
+                    if( img != i ) return false;
+                }
+                if(!completed) alert("Puzzle Complete!!!");
+                completed = true;
+                return true;
+            }
+
+            // this function uses movePiece
+            // shuffles puzzle
+            function shuffle()
+            {
+                var puzzles=new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+
+                var iter=Math.floor(Math.random()*200+0.5)+100;
+
+                for(var i = 1; i < 17; ++i)
+                {
+                    if( document.getElementById(i).name == 16 )
+                    {
+                        var oldidx = i;
+                        break;
+                    }
+                }
+
+                for(var i = 1; i < iter; ++i)
+                {
+                    newidx = newIndex(oldidx);
+                    movePiece(newidx);
+                    oldidx=newidx;
+                }
+                completed = false;
+                return true;
+            }
+
+            // this function moves clicked picture
+            function movePiece(idx)
+            {
+                var idxx = idx;
+                var midx = 0;
+                img = document.getElementById( idxx ).name;
+                if( img == 16 ) return false;
+
+                // if it is not left edge
+                if( !( idxx == 1 || idxx == 5 || idxx == 9 || idxx == 13 ) )
+                {
+                    img = document.getElementById( idxx - 1 ).name;
+                    if( img == 16 ) midx = idxx - 1;
+                }
+                // if it is not right edge
+                if( !( idxx == 4 || idxx == 8 || idxx == 12 || idxx == 16 ) )
+                {
+                    img = document.getElementById( idxx + 1 ).name;
+                    if( img == 16 ) midx = idxx + 1;
+                }
+                // if it is not top edge
+                if( !( idxx == 1 || idxx == 2 || idxx == 3 || idxx == 4 ) )
+                {
+                    img = document.getElementById( idxx - 4 ).name;
+                    if( img == 16 ) midx = idxx - 4;
+                }
+                // if it is not bottom edge
+                if( !( idxx == 13 || idxx == 14 || idxx == 15 || idxx == 16 ) )
+                {
+                    img = document.getElementById( idxx + 4 ).name;
+                    if( img == 16 ) midx = idxx + 4;
+                }
+
+                if( !midx ) return false;
+
+                document.getElementById(midx).src = document.getElementById(idxx).src;
+                document.getElementById(midx).name = document.getElementById(idxx).name;
+                document.getElementById(idxx).src = 'res/16.gif';
+                document.getElementById(idxx).name = 16;
+                // check if this puzzle is solved for every move
+                return isComplete();
+            }
+        </script>
+    </head>
+    <body bgcolor="silver" text="black" link="#0000EE" vlink="#551A8B" alink="red">
+        <h2 align="center">15 Puzzle</h2>
+        <div align="center">
+            <table border>
+                <tr>
+                    <td width="50%" align="center">
+                        <script>
+                            with(window.document)
+                            {
+                                open();
+                                writeln('<table border=1 cellpadding=0 cellspacing=1>');
+                                for(var i=1;i<17;i++)
+                                {
+                                    if( i==1 || i==5 || i==9 || i==13 )
+                                    {
+                                        writeln('<tr>');
+                                    }
+                                    writeln('<td width=49 height=49>');
+                                    writeln('   <a href=JavaScript:void(0);>');
+                                    writeln('       <img src=res/',i,'.gif border=0 width=49 height=49 name=',i,' id=',i,' onclick="movePiece(',i,')"></a>');
+                                    writeln('</td>');
+                                    if( i==4 || i==8 || i==12 || i==16 )
+                                    {
+                                        writeln('</tr>');
+                                    }
+                                }
+                                writeln('</table>');
+                                close();
+                            }
+                        </script>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <p align="center"><br></p>
+    <form method="get">
+    <p align="center">
+    <input type="button" value="START" onClick="shuffle()"></p>
+    <p id=pid></p>
+    </form>
+    </body>
+</html>
