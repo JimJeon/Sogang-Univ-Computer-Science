@@ -11,6 +11,6 @@
 ### Third.Semester
  - 자료구조 ( Data Structure )
  - 어셈블리 ( Assembly Language )
- - 컴퓨터공학 설계 및 실험 ( CSDE )
+ - 컴퓨터공학 설계 및 실험 ( CSDE ) : PRJ-1은 TETRISinC와 함께 개발됩니다.
 
 *[CSDE]: Computer Science Design and Experiment
