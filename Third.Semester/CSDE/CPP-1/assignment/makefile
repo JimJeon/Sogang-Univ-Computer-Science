@@ -1,7 +1,7 @@
 CC = g++
 OBJS = main.o str.o
 TARGET = run
-CPPFLAGS = -g -Wall
+CPPFLAGS = -Wall
 
 all : $(TARGET)
 

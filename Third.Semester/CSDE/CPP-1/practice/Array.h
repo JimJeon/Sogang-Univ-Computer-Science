@@ -10,7 +10,7 @@ class Array {
         int len;
     public:
         Array(int);
-        ~Array();
+        virtual ~Array();
         int length();
         int& operator[](int);
         int operator[](int) const;

@@ -3,39 +3,37 @@
 #include<cstring>
 #include"str.h"
 
-Str::Str(int leng) {
-    len = leng;
-    str = new char[len+1];
+Str::Str(int leng) : len(leng) {
+    this->str = new char[this->len+1];
 }
-Str::Str(const char *neyong) {
-    len = strlen(neyong);
-    str = new char[len+1];
-    strncpy(str, neyong, len+1);
+Str::Str(const char *neyong) : len(strlen(neyong)) {
+    this->str = new char[this->len+1];
+    strncpy(this->str, neyong, this->len+1);
 }
 Str::~Str() {
-    delete [] str;
+    delete [] this->str;
 }
 int Str::length(void) {
-    return len;
+    return this->len;
 }
 char* Str::contents(void) {
-    return str;
+    return this->str;
 }
 int Str::compare(Str& a) {
-    return strcmp(str, a.contents());
+    return strcmp(this->str, a.contents());
 }
 int Str::compare(const char *a) {
-    return strcmp(str, a);
+    return strcmp(this->str, a);
 }
 void Str::operator=(const char *a) {
-    delete [] str;
+    delete [] this->str;
     len = strlen(a);
-    str = new char[len+1];
-    strncpy(str, a, len+1);
+    this->str = new char[this->len+1];
+    strncpy(this->str, a, this->len+1);
 }
 void Str::operator=(Str& a) {
-    delete [] str;
-    len = a.length();
-    str = new char[len+1];
-    strncpy(str, a.contents(), len+1);
+    delete [] this->str;
+    this->len = a.length();
+    this->str = new char[this->len+1];
+    strncpy(this->str, a.contents(), this->len+1);
 }

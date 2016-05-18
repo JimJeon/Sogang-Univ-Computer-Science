@@ -1,7 +1,7 @@
 CC = g++
 OBJS = main.o Array.o RangeArray.o
 TARGET = run
-CPPFLAGS = -g -Wall
+CPPFLAGS = -Wall
 
 all : $(TARGET)
 

@@ -3,32 +3,32 @@
 using namespace std;
 
 Array::Array(int size) : len(size) {
-    data = new int[size];
+    this->data = new int[size];
 }
 Array::~Array() {
-    delete [] data;
+    delete [] this->data;
 }
 int Array::length() {
-    return len;
+    return this->len;
 }
 int& Array::operator[] (int idx) {
     static int tmp;
-    if( idx < 0 || idx >= len) {
+    if( idx < 0 || idx >= this->len) {
         cerr << "Array bound error!" << endl;
         return tmp;
     }
-    return data[idx];
+    return this->data[idx];
 }
 int Array::operator[] (int idx) const {
-    if( idx < 0 || idx >= len ) {
+    if( idx < 0 || idx >= this->len ) {
         cerr << "Array bound error!" << endl;
         return 0;
     }
-    return data[idx];
+    return this->data[idx];
 }
 void Array::print() {
-    cout << "[" << data[0];
-    for (int i = 1; i < len; ++i)
-        cout << " " << data[i];
+    cout << "[" << this->data[0];
+    for (int i = 1; i < this->len; ++i)
+        cout << " " << this->data[i];
     cout << "]" << endl;
 }
