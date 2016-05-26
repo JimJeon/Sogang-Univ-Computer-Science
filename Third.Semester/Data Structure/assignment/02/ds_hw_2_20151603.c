@@ -35,6 +35,7 @@ int main(void) {
   n_input = strlen(buffer);
 
   for(i = 0; i < n_input - 1; ++i) {
+    if(flag) break;
     c = *(buffer + i);
     switch(c) {
       case '(':
@@ -71,7 +72,9 @@ int main(void) {
         exit(EXIT_FAILURE);
     }
   }
+  if(top != NULL) result[0] = 0;
   printf("%d\n", result[0]);
+  while(top != NULL) pop(&top);
   exit(EXIT_SUCCESS);
 }
 void push(node_pointer *head, int data) {
@@ -82,11 +85,13 @@ void push(node_pointer *head, int data) {
 }
 int pop(node_pointer *head) {
   int ret = 0;
+  node_pointer garbage = *head;
   if(*head == NULL) {
     fprintf(stderr, " ERROR: Stack is empty\n");
     return 0;
   }
   ret = (*head)->data;
   *head = (*head)->link;
+  free(garbage);
   return ret;
 }
