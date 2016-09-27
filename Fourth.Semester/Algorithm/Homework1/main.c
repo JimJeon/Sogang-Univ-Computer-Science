@@ -9,6 +9,7 @@ int main(int argc, char** argv) {
     int filesize = 0;
     char input_name[33] = {0};
     char output_name[33] = {0};
+    int i;
 
     FILE* config_fp = NULL;
 
@@ -21,6 +22,10 @@ int main(int argc, char** argv) {
     _2d_result_t* _2d_result = NULL;
 
     config_fp = fopen("HW1_config.txt", "r");
+    if(!config_fp) {
+        fprintf(stderr, "File open error");
+        exit(EXIT_FAILURE);
+    }
     filesize = fscanf(config_fp, "%d", &testcase);
 
     while(testcase--) {
@@ -38,6 +43,7 @@ int main(int argc, char** argv) {
                 stop = clock();
                 one_dim_write_info(output_name, _1d_result);
                 printf("%s/time: %lf\n", input_name, ((double)(stop-start)) / CLOCKS_PER_SEC);
+                free(_1d_info->data);
                 free(_1d_info);
                 free(_1d_result);
                 break;
@@ -48,6 +54,7 @@ int main(int argc, char** argv) {
                 stop = clock();
                 one_dim_write_info(output_name, _1d_result);
                 printf("%s/time: %lf\n", input_name, ((double)(stop-start)) / CLOCKS_PER_SEC);
+                free(_1d_info->data);
                 free(_1d_info);
                 free(_1d_result);
                 break;
@@ -58,6 +65,7 @@ int main(int argc, char** argv) {
                 stop = clock();
                 one_dim_write_info(output_name, _1d_result);
                 printf("%s/time: %lf\n", input_name, ((double)(stop-start)) / CLOCKS_PER_SEC);
+                free(_1d_info->data);
                 free(_1d_info);
                 free(_1d_result);
                 break;
@@ -68,6 +76,7 @@ int main(int argc, char** argv) {
                 stop = clock();
                 two_dim_write_info(output_name, _2d_result);
                 printf("%s/time: %lf\n", input_name, ((double)(stop-start)) / CLOCKS_PER_SEC);
+                for(i = 0; i < _2d_info->number; ++i) free(_2d_info->data[i]);
                 free(_2d_info);
                 free(_2d_result);
                 break;
@@ -78,6 +87,7 @@ int main(int argc, char** argv) {
                 stop = clock();
                 two_dim_write_info(output_name, _2d_result);
                 printf("%s/time: %lf\n", input_name, ((double)(stop-start)) / CLOCKS_PER_SEC);
+                for(i = 0; i < _2d_info->number; ++i) free(_2d_info->data[i]);
                 free(_2d_info);
                 free(_2d_result);
                 break;

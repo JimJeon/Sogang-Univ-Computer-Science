@@ -11,6 +11,11 @@ _1d_result_t* algorithm1(_1d_info_t* info) {
     int sum = 0, max = 0;
     int i, j;
 
+    if(!result) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
+
     for(i = 0; i < info->number; ++i) {
         sum = 0;
         for(j = i; j < info->number; ++j) {
@@ -37,6 +42,10 @@ _1d_result_t* algorithm2(_1d_info_t* info, int left, int right) {
     int left_idx = 0, right_idx = 0;
     int center = 0, i;
 
+    if(!(result&&max_left)) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
     if(left == right) {
         result->max = info->data[left];
         result->left = left;
@@ -101,6 +110,10 @@ _1d_result_t* algorithm3(_1d_info_t* info) {
     int *left_idx_array = calloc(info->number, sizeof(*left_idx_array));
     int i;
 
+    if(!(result&&dp&&left_idx_array)) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
     for(i = 0; i < info->number; ++i) dp[i] = info->data[i];
     
     for(i = 1; i < info->number; ++i) {
@@ -130,6 +143,10 @@ _2d_result_t* algorithm4(_2d_info_t* info) {
     int up = 0, down = 0;
     int sum = 0, max = 0;
 
+    if(!result) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
     for(i = 1; i < info->number; ++i)
         info->data[0][i] += info->data[0][i-1];
 
@@ -175,6 +192,10 @@ _2d_result_t* algorithm5(_2d_info_t* info) {
     _1d_info_t *dp = calloc(1, sizeof(*dp));
     _1d_result_t* sub_result = NULL;
 
+    if(!(result&&dp)) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
     dp->number = info->number;
     dp->data = calloc(info->number, sizeof(*(dp->data)));
 
@@ -195,6 +216,8 @@ _2d_result_t* algorithm5(_2d_info_t* info) {
             }
         }
     }
+
+    free(dp->data);
     free(dp);
     free(sub_result);
 

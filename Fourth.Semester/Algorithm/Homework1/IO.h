@@ -33,7 +33,7 @@ _1d_info_t* one_dim_read_info(const char* filename) {
     FILE *fp = NULL;
     size_t filesize = 0;
 
-    info = malloc(sizeof(*info));
+    info = calloc(1,sizeof(*info));
     if(!info) {
         fprintf(stderr, "Memory allocation failed");
         exit(EXIT_FAILURE);
@@ -47,7 +47,11 @@ _1d_info_t* one_dim_read_info(const char* filename) {
 
     filesize = fread( &(info->number), sizeof(int), 1, fp );
 
-    info->data = malloc(info->number * sizeof( *(info->data) ));
+    info->data = calloc(info->number, sizeof( *(info->data) ));
+    if(!info->data) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
 
     filesize = fread(info->data, sizeof(int), info->number, fp);
 
@@ -75,9 +79,17 @@ _2d_info_t* two_dim_read_info(const char* filename) {
 
     filesize = fread( &(info->number), sizeof(int), 1, fp );
     info->data = calloc(info->number, sizeof( *(info->data) ));
+    if(!info->data) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(EXIT_FAILURE);
+    }
 
     for(i = 0; i < info->number; ++i) {
         info->data[i] = calloc(info->number, sizeof( *(info->data[i]) ));
+        if(!info->data[i]) {
+            fprintf(stderr, "Memory allocation failed");
+            exit(EXIT_FAILURE);
+        }
         filesize = fread(info->data[i], sizeof(int), info->number, fp);
     }
 
