@@ -42,7 +42,7 @@ _1d_result_t* algorithm2(_1d_info_t* info, int left, int right) {
     int left_idx = 0, right_idx = 0;
     int center = 0, i;
 
-    if(!(result&&max_left)) {
+    if(!result) {
         fprintf(stderr, "Memory allocation failed");
         exit(EXIT_FAILURE);
     }
