@@ -39,7 +39,7 @@ _1d_info_t* one_dim_read_info(const char* filename) {
         exit(EXIT_FAILURE);
     }
 
-    fp = fopen(filename, "r");
+    fp = fopen(filename, "rb");
     if(!fp) {
         fprintf(stderr, "File open error");
         exit(EXIT_FAILURE);
@@ -71,7 +71,7 @@ _2d_info_t* two_dim_read_info(const char* filename) {
         exit(EXIT_FAILURE);
     }
 
-    fp = fopen(filename, "r");
+    fp = fopen(filename, "rb");
     if(!fp) {
         fprintf(stderr, "File open error");
         exit(EXIT_FAILURE);
@@ -100,7 +100,7 @@ _2d_info_t* two_dim_read_info(const char* filename) {
 void one_dim_write_info (const char* filename, _1d_result_t* result) {
     FILE* fp = NULL;
 
-    fp = fopen(filename, "w");
+    fp = fopen(filename, "wb");
     if(!fp) {
         fprintf(stderr, "File open error");
         exit(EXIT_FAILURE);
@@ -116,7 +116,7 @@ void one_dim_write_info (const char* filename, _1d_result_t* result) {
 void two_dim_write_info (const char* filename, _2d_result_t* result) {
     FILE* fp = NULL;
 
-    fp = fopen(filename, "w");
+    fp = fopen(filename, "wb");
     if(!fp) {
         fprintf(stderr, "File open error");
         exit(EXIT_FAILURE);

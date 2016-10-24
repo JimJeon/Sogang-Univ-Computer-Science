@@ -3,12 +3,13 @@
 
 #include "IO.h"
 #include <stdlib.h>
+#include <limits.h>
 
 _1d_result_t* algorithm1(_1d_info_t* info) {
     _1d_result_t* result = calloc(1,sizeof(*result));
 
     int left = 0, right = 0;
-    int sum = 0, max = 0;
+    int sum = 0, max = INT_MIN;
     int i, j;
 
     if(!result) {
@@ -37,7 +38,7 @@ _1d_result_t* algorithm1(_1d_info_t* info) {
 _1d_result_t* algorithm2(_1d_info_t* info, int left, int right) {
     _1d_result_t* result = calloc(1,sizeof(*result));
     _1d_result_t *max_left = NULL, *max_right = NULL;
-    int max_left_border = 0, max_right_border = 0;
+    int max_left_border = INT_MIN, max_right_border = INT_MIN;
     int left_border = 0, right_border = 0;
     int left_idx = 0, right_idx = 0;
     int center = 0, i;
@@ -57,7 +58,7 @@ _1d_result_t* algorithm2(_1d_info_t* info, int left, int right) {
     max_left = algorithm2(info, left, center);
     max_right = algorithm2(info, center + 1, right);
 
-    max_left_border = 0, left_border = 0;
+    max_left_border = INT_MIN, left_border = 0;
 
     for(i = center; i >= left; --i) {
         left_border += info->data[i];
@@ -67,7 +68,7 @@ _1d_result_t* algorithm2(_1d_info_t* info, int left, int right) {
         }
     }
 
-    max_right_border = 0, right_border = 0;
+    max_right_border = INT_MIN, right_border = 0;
 
     for(i = center + 1; i <= right; ++i) {
         right_border += info->data[i];
@@ -114,6 +115,8 @@ _1d_result_t* algorithm3(_1d_info_t* info) {
         fprintf(stderr, "Memory allocation failed");
         exit(EXIT_FAILURE);
     }
+    result->max = INT_MIN;
+
     for(i = 0; i < info->number; ++i) dp[i] = info->data[i];
     
     for(i = 1; i < info->number; ++i) {
@@ -141,7 +144,7 @@ _2d_result_t* algorithm4(_2d_info_t* info) {
 
     int left = 0, right = 0;
     int up = 0, down = 0;
-    int sum = 0, max = 0;
+    int sum = 0, max = INT_MIN;
 
     if(!result) {
         fprintf(stderr, "Memory allocation failed");
@@ -196,6 +199,8 @@ _2d_result_t* algorithm5(_2d_info_t* info) {
         fprintf(stderr, "Memory allocation failed");
         exit(EXIT_FAILURE);
     }
+
+    result->max = INT_MIN;
     dp->number = info->number;
     dp->data = calloc(info->number, sizeof(*(dp->data)));
 
