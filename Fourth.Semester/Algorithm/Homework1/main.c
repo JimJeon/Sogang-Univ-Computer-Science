@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     _2d_info_t* _2d_info = NULL;
     _2d_result_t* _2d_result = NULL;
 
-    config_fp = fopen("HW1_config.txt", "r");
+    config_fp = fopen("HW1_config.txt", "rt");
     if(!config_fp) {
         fprintf(stderr, "File open error");
         exit(EXIT_FAILURE);
