@@ -46,7 +46,7 @@ __function__ QSORT-ORIG(void\* _base_, size_t _nmem_, size_t _size_, _int (\*com
 &emsp;&emsp;__if__ nmem is not 0 __then__  
 &emsp;&emsp;&emsp;&emsp;_pivot_ &larr; PARTITION(_base_, _nmem_, _size_, _compar_)  
 &emsp;&emsp;&emsp;&emsp;QSORT-ORIG(_base_, _pivot_, _size_, _compar_)  
-&emsp;&emsp;&emsp;&emsp;QSORT-ORIG(_base_ + _pivot_ \* _size_ + 1, _nmem_ - _pivot_ - 1, _size_, _compar_)  
+&emsp;&emsp;&emsp;&emsp;QSORT-ORIG(_base_ + (_pivot_ + 1) \* _size_, _nmem_ - _pivot_ - 1, _size_, _compar_)  
 
 __function__ INSERTION-SORT(void\* _base_, size_t _nmem_, size_t _size_, _int (\*compar)(const void\*, const void\*)_) __returns__ sorted data  
 &emsp;&emsp;__for__ i in range(1,_nmem_)  
@@ -63,7 +63,7 @@ __function__ QSORT-MEDIAN-INSERT(void\* _base_, size_t _nmem_, size_t _size_, _i
 &emsp;&emsp;SWAP(_base_, _base_ + _pivot_ \* _size_)  
 &emsp;&emsp;PARTITION(_base_, _nmem_, _size_, _compar_)  
 &emsp;&emsp;QSORT-MEDIAN-INSERT(_base_, _pivot_, _size_, _compar_)  
-&emsp;&emsp;QSORT-MEDIAN-INSERT(_base_ + _pivot_ \* _size_ + 1, _nmem_ - _pivot_ - 1, _size_, _compar_)  
+&emsp;&emsp;QSORT-MEDIAN-INSERT(_base_ + (_pivot_ + 1) \* _size_, _nmem_ - _pivot_ - 1, _size_, _compar_)  
 &emsp;&emsp;INSERTION-SORT(_base_, _nmem_, _size_, _compar_)
 
 __function__ QSORT-MEDIAN-INSERT-ITER(void\* _base_, size_t _nmem_, size_t _size_, _int (\*compar)(const void\*, const void\*)_) __returns__ sorted _data_  
@@ -74,7 +74,7 @@ __function__ QSORT-MEDIAN-INSERT-ITER(void\* _base_, size_t _nmem_, size_t _size
 &emsp;&emsp;__if__ _pivot_ < _nmem_ / 2 __then__  
 &emsp;&emsp;&emsp;&emsp;QSORT-MEDIAN-INSERT-ITER(_base_, _pivot_, _size_, _compar_)  
 &emsp;&emsp;__else__  
-&emsp;&emsp;&emsp;&emsp;QSORT-MEDIAN-INSERT-ITER(_base_ + _pivot_ \* _size_ + 1, _nmem_ - _pivot_ - 1, _size_, _compar_)  
+&emsp;&emsp;&emsp;&emsp;QSORT-MEDIAN-INSERT-ITER(_base_ + (_pivot_ + 1) \* _size_, _nmem_ - _pivot_ - 1, _size_, _compar_)  
 &emsp;&emsp;
 
 __function__ QSORT-FINAL(void\* _base_, size_t _nmem_, size_t _size_, _int (\*compar)(const void\*, const void\*)_) __returns__ sorted _data_  
